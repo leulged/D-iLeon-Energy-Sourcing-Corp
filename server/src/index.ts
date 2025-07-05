@@ -8,8 +8,8 @@ import dotenv from "dotenv";
 // Load environment variables
 dotenv.config();
 
-// Import routes (will be created later)
-// import authRoutes from './routes/auth';
+// Import routes
+import authRoutes from "./routes/auth";
 // import userRoutes from './routes/users';
 // import listingRoutes from './routes/listings';
 // import dealRoutes from './routes/deals';
@@ -72,8 +72,8 @@ app.get("/api/health", (_req, res) => {
   });
 });
 
-// API routes (will be added later)
-// app.use('/api/auth', authRoutes);
+// API routes
+app.use("/api/auth", authRoutes);
 // app.use('/api/users', userRoutes);
 // app.use('/api/listings', listingRoutes);
 // app.use('/api/deals', dealRoutes);
