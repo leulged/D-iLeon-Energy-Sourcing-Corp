@@ -6,41 +6,41 @@ const navItems = [
   {
     label: "My Profile",
     icon: "\uD83D\uDC64",
-    href: "/seller/dashboard/profile",
+    href: "/buyer/dashboard/profile",
   },
   {
     label: "Onboarding Checklist",
     icon: "\u2705",
-    href: "/seller/dashboard/onboarding",
+    href: "/buyer/dashboard/onboarding",
   },
   {
     label: "Marketplace",
     icon: "\uD83D\uDCB0",
-    href: "/seller/dashboard/marketplace",
+    href: "/buyer/dashboard/marketplace",
   },
   {
     label: "Deal Tracker",
     icon: "\uD83D\uDD0D",
-    href: "/seller/dashboard/deals",
+    href: "/buyer/dashboard/deals",
   },
   {
     label: "Messages",
     icon: "\uD83D\uDCAC",
-    href: "/seller/dashboard/chat",
+    href: "/buyer/dashboard/chat",
   },
   {
     label: "Documents",
     icon: "\uD83D\uDCC4",
-    href: "/seller/dashboard/documents",
+    href: "/buyer/dashboard/documents",
   },
   {
     label: "Payments",
     icon: "\uD83D\uDCB3",
-    href: "/seller/dashboard/payments",
+    href: "/buyer/dashboard/payments",
   },
 ];
 
-export default function SellerDashboardSidebar() {
+export default function BuyerDashboardSidebar() {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
 
