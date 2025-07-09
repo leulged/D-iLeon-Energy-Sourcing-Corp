@@ -2,7 +2,13 @@
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 
-const sections = [
+interface Section {
+  title: string;
+  desc: string;
+  path?: string;
+}
+
+const sections: Section[] = [
   { title: "Compliance View", desc: "Approve/Reject docs" },
   { title: "Deal Flow", desc: "Assign reviewers" },
   { title: "Chat Oversight", desc: "View all communications" },
@@ -35,7 +41,7 @@ export default function AdminDashboardPage() {
     }
   }, [router]);
 
-  const handleSectionClick = (section: any) => {
+  const handleSectionClick = (section: Section) => {
     if (section.path) {
       router.push(section.path);
     }

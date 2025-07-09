@@ -107,7 +107,7 @@ export default function BuyerOnboardingPage() {
       } else {
         setError("Failed to load onboarding status");
       }
-    } catch (error) {
+    } catch {
       setError("Failed to load onboarding status");
     } finally {
       setLoading(false);
@@ -143,7 +143,7 @@ export default function BuyerOnboardingPage() {
         const errorData = await response.json();
         setError(errorData.message || "Upload failed");
       }
-    } catch (error) {
+    } catch {
       setError("Upload failed. Please try again.");
     } finally {
       setUploading(null);
@@ -166,14 +166,14 @@ export default function BuyerOnboardingPage() {
 
       if (response.ok) {
         setSuccess(
-          "Onboarding submitted for review! You'll be notified once reviewed."
+          "Onboarding submitted for review! You&apos;ll be notified once reviewed."
         );
         fetchOnboardingStatus(); // Refresh status
       } else {
         const errorData = await response.json();
         setError(errorData.message || "Submission failed");
       }
-    } catch (error) {
+    } catch {
       setError("Submission failed. Please try again.");
     }
   };
@@ -385,8 +385,8 @@ export default function BuyerOnboardingPage() {
                 </h3>
                 <p className="text-neutral-300">
                   Your onboarding has been submitted and is currently under
-                  review by our team. You'll receive a notification once the
-                  review is complete.
+                  review by our team. You&apos;ll receive a notification once
+                  the review is complete.
                 </p>
               </div>
             ) : onboardingStatus && onboardingStatus.progress < 100 ? (

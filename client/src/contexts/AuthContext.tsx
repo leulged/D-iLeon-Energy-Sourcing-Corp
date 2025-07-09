@@ -55,7 +55,10 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   };
 
   const login = async (email: string, password: string) => {
-    const res = await axios.post("/api/login", { email, password });
+    const res = await axios.post(`${API_URL}/api/auth/login`, {
+      email,
+      password,
+    });
     const data: LoginResponseDto = res.data;
 
     if (!data) return "Invalid email or password";
@@ -63,7 +66,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     setToken(data.token);
     setUser(data.user);
 
-    axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+    axios.defaults.headers.common["Authorization"] = `Bearer ${data.token}`;
     return data.message;
   };
 
