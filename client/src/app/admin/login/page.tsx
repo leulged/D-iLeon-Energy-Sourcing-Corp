@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
 
-export default function SellerLoginPage() {
+export default function AdminLoginPage() {
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -25,11 +25,16 @@ export default function SellerLoginPage() {
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.message || "Login failed");
+      if (!data.user || data.user.role !== "admin") {
+        throw new Error(
+          "You are not authorized to access the admin dashboard."
+        );
+      }
       setSuccess("Login successful! Redirecting...");
       localStorage.setItem("token", data.token);
-      localStorage.setItem("role", "seller");
+      localStorage.setItem("role", "admin");
       setTimeout(() => {
-        router.push("/seller/dashboard");
+        router.push("/admin/dashboard");
       }, 1200);
     } catch (err) {
       if (err instanceof Error) setError(err.message);
@@ -45,7 +50,7 @@ export default function SellerLoginPage() {
         onSubmit={handleSubmit}
         className="bg-neutral-900 rounded-xl shadow-xl p-8 w-full max-w-md flex flex-col gap-4 border border-neutral-800"
       >
-        <h2 className="text-2xl font-bold mb-2 text-center">Login as Seller</h2>
+        <h2 className="text-2xl font-bold mb-2 text-center">Admin Login</h2>
         {error && (
           <div className="bg-red-700 text-white rounded p-2 text-center">
             {error}
@@ -77,20 +82,11 @@ export default function SellerLoginPage() {
         />
         <button
           type="submit"
-          className="mt-4 px-4 py-2 rounded bg-orange-500 text-white font-semibold hover:bg-orange-600 transition"
+          className="mt-4 px-4 py-2 rounded bg-yellow-500 text-black font-semibold hover:bg-yellow-600 transition"
           disabled={loading}
         >
           {loading ? "Logging in..." : "Login"}
         </button>
-        <div className="text-center text-neutral-400 mt-2">
-          Don&apos;t have an account?{" "}
-          <a
-            href="/register?role=seller"
-            className="text-orange-400 hover:underline cursor-pointer"
-          >
-            Register as Seller
-          </a>
-        </div>
       </form>
     </div>
   );

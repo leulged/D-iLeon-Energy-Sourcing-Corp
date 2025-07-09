@@ -1,12 +1,14 @@
 "use client";
 import SellerDashboardSidebar from "../../components/SellerDashboardSidebar";
+import DashboardNavbar from "../../components/DashboardNavbar";
 
 export default function SellerDashboardPage() {
   return (
-    <div className="min-h-screen flex bg-yellow-400 text-black">
+    <div className="min-h-screen flex bg-black text-white">
       <SellerDashboardSidebar />
       <div className="flex-1 flex flex-col min-h-screen">
-        <header className="p-8 border-b border-yellow-600 bg-yellow-300">
+        <DashboardNavbar />
+        <header className="p-8 border-b border-yellow-600 bg-neutral-900">
           <h1 className="text-3xl font-bold mb-2">Welcome, [Seller Name]</h1>
           <div className="flex items-center gap-4">
             <span className="inline-flex items-center px-3 py-1 rounded-full bg-green-600 text-white font-semibold text-sm">
@@ -18,8 +20,7 @@ export default function SellerDashboardPage() {
           </div>
         </header>
         <main className="flex-1 p-8 md:p-12">
-          {/* Placeholder for dashboard content */}
-          <div className="text-xl font-semibold text-yellow-900">
+          <div className="text-xl font-semibold text-yellow-300">
             Seller dashboard main content goes here.
           </div>
         </main>
