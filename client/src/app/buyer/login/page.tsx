@@ -25,11 +25,19 @@ export default function BuyerLoginPage() {
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.message || "Login failed");
+
+      // Check if user is actually a buyer
+      if (data.user && data.user.role !== "buyer") {
+        throw new Error(
+          "This account is not registered as a buyer. Please use the correct login portal."
+        );
+      }
+
       setSuccess("Login successful! Redirecting...");
       localStorage.setItem("token", data.token);
-      localStorage.setItem("role", "buyer");
+      localStorage.setItem("role", data.user.role); // Use actual role from database
       setTimeout(() => {
-        router.push("/dashboard");
+        router.push("/buyer/dashboard");
       }, 1200);
     } catch (err) {
       if (err instanceof Error) setError(err.message);

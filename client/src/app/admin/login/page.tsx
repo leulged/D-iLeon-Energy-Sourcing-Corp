@@ -32,7 +32,7 @@ export default function AdminLoginPage() {
       }
       setSuccess("Login successful! Redirecting...");
       localStorage.setItem("token", data.token);
-      localStorage.setItem("role", "admin");
+      localStorage.setItem("role", data.user.role); // Use actual role from database
       setTimeout(() => {
         router.push("/admin/dashboard");
       }, 1200);

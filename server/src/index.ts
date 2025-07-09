@@ -10,6 +10,7 @@ dotenv.config();
 
 // Import routes
 import authRoutes from "./routes/auth";
+import onboardingRoutes from "./routes/onboarding";
 // import userRoutes from './routes/users';
 // import listingRoutes from './routes/listings';
 // import dealRoutes from './routes/deals';
@@ -74,6 +75,7 @@ app.get("/api/health", (_req, res) => {
 
 // API routes
 app.use("/api/auth", authRoutes);
+app.use("/api/onboarding", onboardingRoutes);
 // app.use('/api/users', userRoutes);
 // app.use('/api/listings', listingRoutes);
 // app.use('/api/deals', dealRoutes);

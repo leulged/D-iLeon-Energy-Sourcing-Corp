@@ -25,9 +25,17 @@ export default function SellerLoginPage() {
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.message || "Login failed");
+
+      // Check if user is actually a seller
+      if (data.user && data.user.role !== "seller") {
+        throw new Error(
+          "This account is not registered as a seller. Please use the correct login portal."
+        );
+      }
+
       setSuccess("Login successful! Redirecting...");
       localStorage.setItem("token", data.token);
-      localStorage.setItem("role", "seller");
+      localStorage.setItem("role", data.user.role); // Use actual role from database
       setTimeout(() => {
         router.push("/seller/dashboard");
       }, 1200);

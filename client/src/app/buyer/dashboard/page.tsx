@@ -1,8 +1,29 @@
 "use client";
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 import BuyerDashboardSidebar from "../../components/BuyerDashboardSidebar";
 import DashboardNavbar from "../../components/DashboardNavbar";
 
 export default function BuyerDashboardPage() {
+  const router = useRouter();
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const token = localStorage.getItem("token");
+      const role = localStorage.getItem("role");
+
+      if (!token) {
+        router.push("/login");
+        return;
+      }
+
+      if (role !== "buyer") {
+        router.push("/login");
+        return;
+      }
+    }
+  }, [router]);
+
   return (
     <div className="min-h-screen flex bg-black text-white">
       <BuyerDashboardSidebar />
