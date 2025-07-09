@@ -73,24 +73,24 @@ export default function BuyerOnboardingPage() {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
 
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      const token = localStorage.getItem("token");
-      const role = localStorage.getItem("role");
+  // useEffect(() => {
+  //   if (typeof window !== "undefined") {
+  //     const token = localStorage.getItem("token");
+  //     const role = localStorage.getItem("role");
 
-      if (!token) {
-        router.push("/login");
-        return;
-      }
+  //     if (!token) {
+  //       router.push("/login");
+  //       return;
+  //     }
 
-      if (role !== "buyer") {
-        router.push("/login");
-        return;
-      }
+  //     if (role !== "buyer") {
+  //       router.push("/login");
+  //       return;
+  //     }
 
-      fetchOnboardingStatus();
-    }
-  }, [router]);
+  //     fetchOnboardingStatus();
+  //   }
+  // }, [router]);
 
   const fetchOnboardingStatus = async () => {
     try {

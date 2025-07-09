@@ -24,23 +24,23 @@ const sections: Section[] = [
 export default function AdminDashboardPage() {
   const router = useRouter();
 
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      const token = localStorage.getItem("token");
-      const role = localStorage.getItem("role");
-
-      if (!token) {
-        router.push("/admin/login");
-        return;
-      }
-
-      if (role !== "admin") {
-        router.push("/admin/login");
-        return;
-      }
-    }
-  }, [router]);
-
+  // useEffect(() => {
+  //   if (typeof window !== "undefined") {
+  //     const token = localStorage.getItem("token");
+  //     const role = localStorage.getItem("role");
+  //
+  //     if (!token) {
+  //       router.push("/admin/login");
+  //       return;
+  //     }
+  //
+  //     if (role !== "admin") {
+  //       router.push("/admin/login");
+  //       return;
+  //     }
+  //   }
+  // }, [router]);
+  //
   const handleSectionClick = (section: Section) => {
     if (section.path) {
       router.push(section.path);
